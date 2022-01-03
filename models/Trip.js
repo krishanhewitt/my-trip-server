@@ -5,11 +5,11 @@ const TripSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    start_date: {
+    startDate: {
         type: Date,
         required: true
     },
-    end_date: {
+    endDate: {
         type: Date,
         required: true
     },
@@ -21,5 +21,6 @@ const TripSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-
 });
+
+module.exports = Trip = mongoose.model('trip', TripSchema);
