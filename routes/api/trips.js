@@ -31,8 +31,8 @@ router.get('/:id', (req, res) => {
 //access Public
 router.post('/', (req, res) => {
     Trip.create(req.body)
-        .then(trips => res.json({ msg: 'Trip added successfully' }))
-        .catch(err => res.status(400).json({ error: 'Unable to add this trip' }));        
+        .then(trips => res.status(200).json('Trip added successfully'))
+        .catch(err => res.status(400).json({ error: err }));        
 });
 
 //@route PUT api/trips/:id
@@ -52,3 +52,5 @@ router.delete('/:id', (req, res) => {
         .then(trips => res.json(trips))
         .catch(err => res.status(404).json({ notripsfound: 'No Trips Found' }));        
 });
+
+module.exports = router;
