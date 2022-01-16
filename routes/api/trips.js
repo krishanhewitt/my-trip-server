@@ -14,7 +14,7 @@ router.get('/test', (req, res) => res.send('trip route testing!'));
 router.get('/', (req, res) => {
     Trip.find()
         .then(trips => res.json(trips))
-        .catch(err => res.status(404).json({ notripsfound: 'No Trips Found' }));        
+        .catch(err => res.status(404).json({ notripsfound: 'No Trips Found - Error: ' + err }));        
 });
 
 //@route GET api/trips/:id
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     Trip.findById(req.params.id)
         .then(trips => res.json(trips))
-        .catch(err => res.status(404).json({ notripsfound: 'No Trips Found' }));        
+        .catch(err => res.status(404).json({ notripsfound: 'No Trips Found - Error: ' + err }));        
 });
 
 //@route POST api/trips
@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Trip.create(req.body)
         .then(trips => res.status(200).json('Trip added successfully'))
-        .catch(err => res.status(400).json({ error: err }));        
+        .catch(err => res.status(400).json({ notripadded: 'Trip failed to add -  - Error: ' + err }));        
 });
 
 //@route PUT api/trips/:id
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     Trip.findByIdAndUpdate(req.params.id, req.body)
         .then(trip => res.json({ msg: 'Updated successfully' }))
-        .catch(err => res.status(400).json({ error: 'Unable to update the Database' }));        
+        .catch(err => res.status(400).json({ error: 'Unable to update the Database - Error: ' + err }));        
 });
 
 //@route DELETE api/trips/:id
@@ -50,7 +50,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     Trip.findByIdAndRemove(req.params.id, req.body)
         .then(trips => res.json(trips))
-        .catch(err => res.status(404).json({ notripsfound: 'No Trips Found' }));        
+        .catch(err => res.status(404).json({ notripsfound: 'No Trips Found - Error: ' + err }));        
 });
 
 module.exports = router;
