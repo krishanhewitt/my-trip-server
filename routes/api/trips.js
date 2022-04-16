@@ -3,6 +3,15 @@ const router = express.Router();
 
 const Trip = require('../../models/Trip');
 
+//@route GET api/trips
+//@description Get all trips
+//access Public
+router.get('/', (req, res) => {
+    Trip.find()
+    .then(trips => res.status(200).json(trips))
+    .catch(err => res.status(404).json({ message: 'No Trips Found - Error: ' + err }));
+});        
+
 //@route GET api/trips/:id
 //@description Get single trip by id
 router.get('/:id', (req, res) => {
