@@ -1,2 +1,5 @@
 "default.json" 
 config/default.json
+config/.env
+.env
+.vscode/launch.json
